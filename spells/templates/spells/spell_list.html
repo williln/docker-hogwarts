@@ -1,0 +1,9 @@
+{% if spells %}
+  <ul>
+    {% for spell in spells %}
+        <li><a href="{% url 'detail' spell.id %}">{{ spell.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>This spellbook is empty!</p>
+{% endif %}
