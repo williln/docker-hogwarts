@@ -19,7 +19,7 @@ Notice how two services are created: `db_1` and `web_1`. See that migrations run
 
 In a new tab, run: 
 
-    docker-compose run web --manage.py createsuperuser 
+    docker-compose run web --rm ./manage.py createsuperuser
 
 ## Create sample data 
 
