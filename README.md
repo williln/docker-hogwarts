@@ -66,6 +66,30 @@ Update your requirements file with something like `requests` or another library 
 or 
 
     docker ps 
+    
+### Add a volume for your data 
+
+It's helpful in development (and pretty necessary in production) to have your data persist across containers and across coding sessions. Read more about volumes in the [docs](https://docs.docker.com/storage/volumes/). 
+
+To add a data volume to your project, make these changes to `docker-compose.yml`: 
+
+    services:
+      db:
+        ...
+        volumes:
+          - postgres_data:/var/lib/postgresql/data/
+
+      web:
+        ...
+
+    volumes:
+      postgres_data:
+      
+ First add a `volume` element under your `db` service and name it `postgres_data`. Include the path to where your data will be stored in your container. 
+ 
+ Then, add another element at the same level as `services` called `volumes`, and refer to your `postgres_data` volumes. 
+ 
+ Now you won't need to recreate your superuser and test data every time you shut down your containers. 
 
 ### Stop for the day (_Nox_)
 
@@ -77,7 +101,6 @@ or
 1. "Exec" into the Docker container with `docker exec --it` 
 1. Stop and restart just the `web` container 
 1. Add a new service to `docker-compose.yml`; maybe Redis? 
-1. Add a data volume so your data persists between coding sessions 
 1. Add tests and run them using `docker-compose run` commands 
 
 # Resources 
